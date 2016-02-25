@@ -1,0 +1,22 @@
+{
+  "name": "popx-stdlib",
+  "version": "0.1.0",
+  "description": "Standard library of code modules for popx",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mark-hahn/popx-stdlib.git"
+  },
+  "keywords": [
+    "popx",
+    "reactive",
+    "framework",
+    "standard library"
+  ],
+  "author": "Mark Hahn <mark@hahnca.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mark-hahn/popx-stdlib/issues"
+  },
+  "homepage": "https://github.com/mark-hahn/popx-stdlib#readme"
+}
