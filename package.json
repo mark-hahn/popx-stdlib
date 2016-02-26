@@ -1,6 +1,6 @@
 {
   "name": "popx-stdlib",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Standard library of code modules for popx",
   "main": "index.js",
   "repository": {
@@ -18,5 +18,16 @@
   "bugs": {
     "url": "https://github.com/mark-hahn/popx-stdlib/issues"
   },
-  "homepage": "https://github.com/mark-hahn/popx-stdlib#readme"
+  "jshintConfig": {
+    "esversion": 6,
+    "predef": [
+      "require",
+      "module"
+    ]
+  },
+  "homepage": "https://github.com/mark-hahn/popx-stdlib#readme",
+  "dependencies": {
+    "moment": "^2.11.2",
+    "popx": "^0.1.1"
+  }
 }

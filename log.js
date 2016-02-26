@@ -7,9 +7,10 @@ var moment = require('moment');
 (()=>{
   'use strict';
 
+  module.exports = 
   class Log extends Popx {
-    constructor () {
-      super();
+    constructor (env, module) {
+      super(env, module);
       this.react( '*', pins => {
         for(var pinName in pins) {
           let pin = pins[pinName];
@@ -24,7 +25,5 @@ var moment = require('moment');
         }
       });
     }
-  }
-
-  module.exports = new Log();
+  };
 })();
