@@ -6,12 +6,12 @@ var Popx = require('popx');
 
   module.exports = 
   class TextInput extends Popx {
-    constructor (env, module) {
-      super(env, module);
-      this.react('selector', pins => {
+    constructor (env, name, module) {
+      super(env, name, module);
+      this.react('selector', (pinName, wireName, wire) => {
         if (this.changedListener) 
           this.ele.removeEventListener('changed', this.changedListener);
-        this.ele = document.querySelector(pins.selector.val);
+        this.ele = document.querySelector(wire.val);
         this.changedListener = e => this.emit('changed', e);
         this.ele.addEventListener('changed', this.changedListener);
       });
