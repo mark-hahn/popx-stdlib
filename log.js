@@ -9,12 +9,13 @@ var moment = require('moment');
 
   module.exports = 
   class Log extends Popx {
-    constructor (env, name, module) {
-      super(env, name, module);
-      this.react( '*', (pinName, wireName, wire) => {
+    constructor (module) {
+      super(module);
+      this.react( '*', (val, pinName, ext) => {
         let line = `${moment().format().slice(0,-6).replace('T',' ')} 
-                    ${wire.event ? 'event' : 'value'}
-                    pin: ${pinName}, ${wireName}: ${util.inspect(wire.val)}`
+                    ${ext.event ? 'event' : 'value'}
+                    module:${module.name}, pin:${pinName}, 
+                    wire:${ext.wireName}, value:${util.inspect(val)}`
                    .replace(/\s+/g, ' ').slice(0,100);
         if (this.get('console').val !== false) console.log(line);
         let path = this.get('path').val;

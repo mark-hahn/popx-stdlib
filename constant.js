@@ -5,8 +5,8 @@ var Popx = require('popx');
   'use strict';
   module.exports = 
   class Constant extends Popx {
-    constructor (env, name, module) {
-      super(env, name, module);
+    constructor (module) {
+      super(module);
       setTimeout((_=> this.set('out', module.state)), 0);
     }
   };
