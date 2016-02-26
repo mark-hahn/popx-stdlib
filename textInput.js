@@ -9,11 +9,15 @@ var Popx = require('popx');
     constructor (env, name, module) {
       super(env, name, module);
       this.react('selector', (pinName, wireName, wire) => {
-        if (this.changedListener) 
+        if (this.changedListener) {
           this.ele.removeEventListener('changed', this.changedListener);
-        this.ele = document.querySelector(wire.val);
-        this.changedListener = e => this.emit('changed', e);
-        this.ele.addEventListener('changed', this.changedListener);
+          delete this.changedListener;
+        }
+        if (wire.val) {
+          this.ele = document.querySelector(wire.val);
+          this.changedListener = e => this.emit('changed', e);
+          this.ele.addEventListener('changed', this.changedListener);
+        }
       });
     }
   };

@@ -12,10 +12,10 @@ var moment = require('moment');
     constructor (env, name, module) {
       super(env, name, module);
       this.react( '*', (pinName, wireName, wire) => {
-        let line = `${moment.format().slice(0,-6).replace('T',' ')} 
+        let line = `${moment().format().slice(0,-6).replace('T',' ')} 
                     ${wire.event ? 'event' : 'value'}
-                    ${pinName}, ${wireName}: ${util.inspect(wire.val)}`
-                   .replace(/\s+/g, ' ');
+                    pin: ${pinName}, ${wireName}: ${util.inspect(wire.val)}`
+                   .replace(/\s+/g, ' ').slice(0,100);
         if (this.get('console').val !== false) console.log(line);
         let path = this.get('path').val;
         if (path) fs.appendFileSync(path, line);
