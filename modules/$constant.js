@@ -1,10 +1,8 @@
 
-var Popx = require('popx');
-
+var $constant = null;
 (_=>{
   'use strict';
-  module.exports = 
-  class Constant extends Popx {
+  $constant = class extends Popx {
     constructor (module) {
       super(module);
       setTimeout((_=> this.set('out', module.state)), 0);
