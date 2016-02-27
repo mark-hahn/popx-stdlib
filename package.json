@@ -1,6 +1,6 @@
 {
   "name": "popx-stdlib",
-  "version": "0.1.2",
+  "version": "0.2.0",
   "description": "Standard library of code modules for popx",
   "main": "index.js",
   "repository": {
