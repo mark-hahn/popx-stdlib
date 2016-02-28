@@ -6,15 +6,15 @@ var $textInput = null;
     constructor (module) {
       super(module);
       
-      this.react('selector', selector => {
-        if (this.changedListener) {
-          this.ele.removeEventListener('change', this.changedListener);
-          delete this.changedListener;
+      this.react('selector', (_, selector) => {
+        if (this.changeListener) {
+          this.ele.removeEventListener('change', this.changeListener);
+          delete this.changeListener;
         }
         if (selector) {
           this.ele = document.querySelector(selector);
-          this.changedListener = e => this.emit('change', e);
-          this.ele.addEventListener('change', this.changedListener);
+          this.changeListener = e => this.emit('change', e);
+          this.ele.addEventListener('change', this.changeListener);
         }
       });
       
