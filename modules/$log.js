@@ -1,31 +1,24 @@
 
-var fs     = require('fs');
-var util   = require('util');
-var moment = require('moment');
+/* pragma:module = $log */
 
-var $log = null;
-(_=>{
-  'use strict';
-  
-  $log = class extends Popx {
-    constructor (module) {
-      super(module);
-      this.react( '*', (pinName, val, oldVal, sentFrom) => {
-        let line = valstr => `${moment().format().slice(0,-6).replace('T',' ')} 
-                              ${sentFrom.module}(${sentFrom.pinName}) 
-                              ->
-                              ${sentFrom.event ? 'event' : 'value'}
-                              wire:${sentFrom.wireName}, value:${valStr}
-                              -> ${this.module.name}(${pinName})`
-                              .replace(/\s+/g, ' ');
-        let valStr = util.inspect(val);
-        if (this.get('console') !== false) {
-          console.log(line(valStr.replace(/\s+/g, ' ').slice(0,40)));
-        }
-        let path = this.get('path');
-        if (path) fs.appendFileSync(path, line(valStr)+'\n');
-      });
-    }
-  };
-  
-})();
+let fs     = require('fs');
+let util   = require('util');
+let moment = require('moment');
+
+this.react( '*', (pinName, val, oldVal, sentFrom) => {
+  let line = `${moment().format().slice(0,-6).replace('T',' ')} 
+              ${sentFrom.pinName}(${sentFrom.module}) 
+              ${sentFrom.event ? 'event' : ''}
+              ->
+              ${sentFrom.wireName}: ${util.inspect(val)}`
+              .replace(/\s+/g, ' ');
+  if (this.get('console') !== false) {
+    console.log(line.slice(0,100));
+  }
+  let path = this.get('path');
+  if (path) {
+    if (typeof fs.appendFileSync !== 'function') {
+      console.log('popx: no file sys to write log:', path);
+    } else fs.appendFileSync(path, line + '\n');
+  }
+});
