@@ -25,10 +25,9 @@ switch(this.get('$op')) {
         if (pinName.slice(-3) === 'Evt') {
           let evtName = pinName.slice(0, -3);
           for (let ele of eles) ele.addEventListener(evtName, event => {
-            let ancestor = null;
+            let ancestorEle = ele;
             if (ancestSel) ancestorEle = closest(ele, ancestSel);
-            if (ancestorEle) ele = ancestorEle;
-            this.emit(pinName, ele, {ele, ancestor, event});
+            this.emit(pinName, ele.value, {ele, ancestorEle, event});
           });
         }
       })(pinName);
