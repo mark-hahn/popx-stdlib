@@ -1,15 +1,16 @@
+/* pragma module = $arrayOps */
 
-/* pragma:module = $arrayOps */
-
-this.react('$init', _=> {
-  if (this.changeListener) {
-    this.ele.removeEventListener('change', this.changeListener);
-    delete this.changeListener;
-  }
-  let selector = this.get('selector');
-  if (selector) {
-    this.ele = document.querySelector(selector);
-    this.changeListener = e => this.emit('change', e.target.value);
-    this.ele.addEventListener('change', this.changeListener);
+this.react('$item', 'event', (pinName, value, data) => {
+  let array = this.get('$array');
+  
+  switch (this.get('$op')) {
+    
+    case 'unshift': array.unshift(value); break;
+    
+    case 'delete': 
+      let index = array.indexOf(value);
+      array.splice(index, 1);
+      break;
+      
   }
 });

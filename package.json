@@ -20,14 +20,12 @@
   },
   "jshintConfig": {
     "esversion": 6,
-    "predef": [
-      "require",
-      "module"
-    ]
+    "loopfunc": true
   },
   "homepage": "https://github.com/mark-hahn/popx-stdlib#readme",
   "dependencies": {
     "moment": "^2.11.2",
+    "mustache": "^2.2.1",
     "popx": "^0.1.2"
   }
 }

@@ -34,3 +34,13 @@ Collection of standard JS code modules to be included in popx declarative module
       - *out* a constant value set once at startup
       
       
+### compatiblility
+
+  - Internet Explorer 9+
+  - Firefox 3.6+
+  - Chrome
+  - Opera 11.5+
+  - Android 2.2+
+  - Blackberry 7+
+  - iOS Safari 4+
+  - Safari 5+
