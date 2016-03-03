@@ -5,12 +5,14 @@ let fs     = require('fs');
 let util   = require('util');
 let moment = require('moment');
 
-this.react( '*', (pinName, value, data) => {
+let pinNames = (this.get('$allWires') ? '**' : '*');
+  
+this.react(pinNames, null, (pinName, data, meta) => {
   let line = `${moment().format().slice(0,-6).replace('T',' ')} 
-              ${data.sentFrom.pinName}(${data.sentFrom.module}) 
-              ${data.isEvent ? 'event' : ''}
+              ${meta.sentFrom.pinName}(${meta.sentFrom.module}) 
+              ${meta.isEvent ? 'event' : ''}
               ->
-              ${data.sentFrom.wireName}: ${util.inspect(value)}`
+              ${meta.sentFrom.wireName}: ${util.inspect(data)}`
               .replace(/\s+/g, ' ');
   if (this.get('$console') !== false) {
     console.log(line.slice(0,100));

@@ -1,16 +1,17 @@
 /* pragma module = $arrayOps */
 
-this.react('$item', 'event', (pinName, value, data) => {
-  let array = this.get('$array');
+this.react('$item', 'event', (pinName, data, meta) => {
+  let arrayValue = this.get('$array');
   
   switch (this.get('$op')) {
     
-    case 'unshift': array.unshift(value); break;
-    
-    case 'delete': 
-      let index = array.indexOf(value);
-      array.splice(index, 1);
+    case 'unshift': 
+      arrayValue.data = this.setFrozenAttr(arrayValue.data, 'unshift', data); 
       break;
-      
+    
+    case 'remove': 
+      let index = array.indexOf(arrayValue.data);
+      arrayValue.data = this.setFrozenAttr(arrayValue.data, [index]); 
+      break;
   }
 });
