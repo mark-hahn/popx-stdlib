@@ -87,7 +87,7 @@ switch(this.get('$op')) {
         else html = template;
       }
       if (html) ele.innerHTML = html;
-      this.emit('$ele', ele, {model});
+      this.emit('$eleEvt', ele, {model});
     });
     break;
   
@@ -105,12 +105,11 @@ switch(this.get('$op')) {
     });
     break;
     
-  case 'attach':
+  case 'setChildren':
     let parents = getEles(this.get('$parent')).eles;
     let parent = parents[0];
-    this.react('$children', 'value', (args) => {
+    this.react('$children', 'value', (_, children) => {
       while (parent.firstChild) parent.removeChild(parent.firstChild);
-      let children = this.get('$children');
       if(!Array.isArray(children)) children = [children];
       for (let child of children) parent.appendChild(child);
     });

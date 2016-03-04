@@ -5,7 +5,7 @@ let fs     = require('fs');
 let util   = require('util');
 let moment = require('moment');
 
-let pinNames = (this.get('$allWires') ? '**' : '*');
+let pinNames = (this.get('$allWires') ? '***' : '**');
   
 this.react(pinNames, null, (pinName, data, meta) => {
   let line = `${moment().format().slice(0,-6).replace('T',' ')} 
