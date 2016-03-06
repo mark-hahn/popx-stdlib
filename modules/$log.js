@@ -1,6 +1,4 @@
 
-/* pragma module = $log */
-
 let fs     = require('fs');
 let util   = require('util');
 let moment = require('moment');

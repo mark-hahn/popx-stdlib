@@ -1,4 +1,3 @@
-/* pragma module = $arrayOps */
 
 this.react('$item', 'event', (pinName, data, meta) => {
   let arrayValue = this.get('$array') || {data:[],meta:{}};

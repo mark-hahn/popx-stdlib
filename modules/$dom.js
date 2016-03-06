@@ -1,6 +1,4 @@
 
-/* pragma module = $dom */
-
 let mustache = require('mustache');
 
 let matches = Element.matches || Element.mozMatchesSelector || Element.msMatchesSelector || 
@@ -17,9 +15,12 @@ let closest = (ele, sel) => {
 
 let getEles = (sel) => {
   if (sel instanceof Element) return {eles:[sel]};
-  if (!Array.isArray(sel)) sel = [sel];
-  if (sel[0] instanceof Element) return {eles:sel};
-  let containerSel = sel[1];
+  let containerSel;
+  if (Array.isArray(sel)) {
+    if (sel[0] instanceof Element) return {eles:sel};
+    containerSel = sel[1];
+    sel = sel[0];
+  }
   let container = (containerSel ? document.querySelector(containerSel) : null);
   let eles = (container ? container : document).querySelectorAll(sel);
   return {container, eles};
